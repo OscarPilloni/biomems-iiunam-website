@@ -2,9 +2,20 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useEffect, useState } from "react"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [mensaje, setMensaje] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/hello")
+      .then((res) => res.json())
+      .then((data) => setMensaje(data.message));
+  }, []);
+
+  return <h1>{mensaje}</h1>;
+  
+  /* const [count, setCount] = useState(0)
 
   return (
     <>
@@ -29,7 +40,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  ) */
 }
 
 export default App
