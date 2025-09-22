@@ -44,3 +44,18 @@ export interface SiteMeta {
   social: Social
   featured?: FeaturedRef
 }
+
+export type PersonRole = 'PI' | 'PhD' | 'MSc' | 'BSc' | 'Alumni' | 'Staff'
+
+export interface Person {
+  id: string
+  locale: Locale // 'en' | 'es'
+  name: string
+  role: PersonRole
+  email?: string
+  orcid?: string
+  scholar?: string
+  website?: string
+  avatarUrl?: string // external URL or /assets/...
+  period?: string // e.g., "2024–2026" or graduation year
+}

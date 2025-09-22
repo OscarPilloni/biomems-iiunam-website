@@ -1,30 +1,57 @@
 import { PersonCard } from '@components/PersonCard'
 import Section from '@components/Section'
+import { getAlumni,getPI, getStudents } from '@lib/people'
 
 export default function PersonasES() {
+  const pi = getPI('es')
+  const students = getStudents('es')
+  const alumni = getAlumni('es')
+
   return (
     <Section title="Personas" subtitle="Investigador/a responsable, estudiantes y egresados/as.">
       <h2 className="text-xl font-semibold">Responsable (PI)</h2>
       <div className="grid gap-4">
-        <PersonCard
-          name="Tu Nombre"
-          role="PI"
-          email="nombre@ii.unam.mx"
-          orcid="https://orcid.org/"
-          scholar="https://scholar.google.com/"
-        />
+        {pi.map((p) => (
+          <PersonCard
+            key={p.id}
+            name={p.name}
+            role={p.role}
+            email={p.email}
+            orcid={p.orcid}
+            scholar={p.scholar}
+            website={p.website}
+            avatarUrl={p.avatarUrl}
+          />
+        ))}
       </div>
 
       <h2 className="mt-8 text-xl font-semibold">Estudiantes</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {/* Mapea estudiantes aquí */}
-        <PersonCard name="Estudiante A" role="Maestría" />
-        <PersonCard name="Estudiante B" role="Licenciatura" />
+        {students.map((p) => (
+          <PersonCard
+            key={p.id}
+            name={p.name}
+            role={p.role}
+            email={p.email}
+            orcid={p.orcid}
+            scholar={p.scholar}
+            website={p.website}
+            avatarUrl={p.avatarUrl}
+          />
+        ))}
       </div>
 
       <h2 className="mt-8 text-xl font-semibold">Egresados/as</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <PersonCard name="Egresado X" role="Egreso — 2024" />
+        {alumni.map((p) => (
+          <PersonCard
+            key={p.id}
+            name={p.name}
+            role={p.role}
+            avatarUrl={p.avatarUrl}
+            extra={p.period ? <span>{p.period}</span> : null}
+          />
+        ))}
       </div>
     </Section>
   )

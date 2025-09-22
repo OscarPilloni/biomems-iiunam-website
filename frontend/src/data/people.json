@@ -1,0 +1,42 @@
+[
+  {
+    "id": "oscar",
+    "locale": "en",
+    "name": "Oscar Pilloni",
+    "role": "PI",
+    "email": "lab@ii.unam.mx",
+    "orcid": "https://orcid.org/",
+    "scholar": "https://scholar.google.com/",
+    "avatarUrl": ""
+  },
+  {
+    "id": "oscar-es",
+    "locale": "es",
+    "name": "Oscar Pilloni",
+    "role": "PI",
+    "email": "lab@ii.unam.mx",
+    "orcid": "https://orcid.org/",
+    "scholar": "https://scholar.google.com/",
+    "avatarUrl": ""
+  },
+
+  { "id": "student-a", "locale": "en", "name": "Student A", "role": "MSc", "avatarUrl": "" },
+  { "id": "student-a-es", "locale": "es", "name": "Estudiante A", "role": "MSc", "avatarUrl": "" },
+
+  {
+    "id": "alumn-x",
+    "locale": "en",
+    "name": "Alumn X",
+    "role": "Alumni",
+    "period": "2023",
+    "avatarUrl": ""
+  },
+  {
+    "id": "alumn-x-es",
+    "locale": "es",
+    "name": "Egresado X",
+    "role": "Alumni",
+    "period": "2023",
+    "avatarUrl": ""
+  }
+]
