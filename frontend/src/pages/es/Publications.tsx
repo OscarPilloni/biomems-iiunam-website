@@ -1,11 +1,31 @@
 import { Card } from '@components/Card'
 import Section from '@components/Section'
+import { distinctYears,getPublications } from '@lib/publications'
+import { useMemo, useState } from 'react'
 
 export default function PublicacionesES() {
+  const all = getPublications('es')
+  const years = distinctYears('es')
+  const [q, setQ] = useState('')
+  const [year, setYear] = useState<number | 'all'>('all')
+
+  const items = useMemo(() => {
+    const qn = q.trim().toLowerCase()
+    return all.filter((p) => {
+      const okYear = year === 'all' ? true : p.year === year
+      const okQ =
+        !qn ||
+        p.title.toLowerCase().includes(qn) ||
+        p.authors.some((a) => a.toLowerCase().includes(qn)) ||
+        (p.venue || '').toLowerCase().includes(qn)
+      return okYear && okQ
+    })
+  }, [all, q, year])
+
   return (
     <Section
       title="Publicaciones"
-      subtitle="Generadas automáticamente desde BibTeX → JSON. Incluye DOI y vínculos a texto completo cuando sea posible."
+      subtitle="Generadas automáticamente desde BibTeX."
       actions={
         <a
           href="/es/datos"
@@ -15,29 +35,40 @@ export default function PublicacionesES() {
         </a>
       }
     >
-      <Card eyebrow="Cómo funcionará" title="Flujo">
-        <ol className="list-decimal space-y-2 pl-5 text-sm">
-          <li>
-            Coloca un archivo <code>publications.bib</code> en <code>/data</code>.
-          </li>
-          <li>Convierte a JSON (script breve) y renderiza aquí.</li>
-          <li>Cada entrada muestra autores, título, venue, año y enlaces.</li>
-        </ol>
-      </Card>
-      <div className="grid gap-4">
-        {/* Renderiza elementos reales aquí */}
-        <Card
-          title="Título de ejemplo"
-          footer={
-            <a className="underline" href="https://doi.org/">
-              DOI
-            </a>
-          }
+      <div className="flex flex-wrap items-center gap-3">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Buscar título, autor, sede…"
+          className="h-9 rounded-lg border px-3 text-sm"
+        />
+        <select
+          className="h-9 rounded-lg border px-2 text-sm"
+          value={year}
+          onChange={(e) => setYear(e.target.value === 'all' ? 'all' : Number(e.target.value))}
         >
-          <p>
-            <strong>Autores</strong> — Sede (Año).
-          </p>
-        </Card>
+          <option value="all">Todos los años</option>
+          {years.map((y) => (
+            <option key={y} value={y}>
+              {y}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mt-4 grid gap-4">
+        {items.map((p) => (
+          <Card
+            key={p.id}
+            eyebrow={String(p.year ?? '')}
+            title={p.title}
+            footer={<span>{p.venue}</span>}
+            href={p.url}
+          >
+            <p className="text-sm">{p.authors.join(', ')}</p>
+          </Card>
+        ))}
+        {items.length === 0 && <p className="text-muted-foreground text-sm">Sin resultados.</p>}
       </div>
     </Section>
   )

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "p1",
+    "type": "article",
+    "title": "DEP-based sorting of microplastics in microchannels",
+    "authors": [
+      "Pilloni",
+      "Oscar",
+      "Oropeza",
+      "Laura",
+      "Madou",
+      "Marc"
+    ],
+    "venue": "Journal of Microfluidics",
+    "year": 2025,
+    "doi": "10.1234/example.doi.001",
+    "url": "https://doi.org/10.1234/example.doi.001",
+    "language": "en"
+  },
+  {
+    "id": "p2",
+    "type": "inproceedings",
+    "title": "Clasificación de microplásticos con DEP en chip",
+    "authors": [
+      "Pilloni",
+      "Oscar",
+      "Oropeza",
+      "Laura"
+    ],
+    "venue": "Congreso Latinoamericano de Microfluídica",
+    "year": 2025,
+    "doi": "",
+    "url": "",
+    "language": "es"
+  },
+  {
+    "id": "p3",
+    "type": "article",
+    "title": "Electrokinetic manipulation of biological cells in microfluidic devices",
+    "authors": [
+      "Pilloni",
+      "Oscar",
+      "Smith",
+      "John",
+      "Doe",
+      "Jane"
+    ],
+    "venue": "International Journal of BioMEMS",
+    "year": 2024,
+    "doi": "10.5678/example.doi.002",
+    "url": "https://doi.org/10.5678/example.doi.002",
+    "language": "en"
+  },
+  {
+    "id": "p4",
+    "type": "inproceedings",
+    "title": "Manipulación electrocinética de células biológicas en dispositivos microfluídicos",
+    "authors": [
+      "Pilloni",
+      "Oscar",
+      "Smith",
+      "John",
+      "Doe",
+      "Jane"
+    ],
+    "venue": "Congreso Internacional de BioMEMS",
+    "year": 2024,
+    "doi": "",
+    "url": "",
+    "language": "es"
+  }
+]

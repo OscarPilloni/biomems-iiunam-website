@@ -1,11 +1,31 @@
 import { Card } from '@components/Card'
 import Section from '@components/Section'
+import { distinctYears,getPublications } from '@lib/publications'
+import { useMemo, useState } from 'react'
 
 export default function PublicationsEN() {
+  const all = getPublications('en')
+  const years = distinctYears('en')
+  const [q, setQ] = useState('')
+  const [year, setYear] = useState<number | 'all'>('all')
+
+  const items = useMemo(() => {
+    const qn = q.trim().toLowerCase()
+    return all.filter((p) => {
+      const okYear = year === 'all' ? true : p.year === year
+      const okQ =
+        !qn ||
+        p.title.toLowerCase().includes(qn) ||
+        p.authors.some((a) => a.toLowerCase().includes(qn)) ||
+        (p.venue || '').toLowerCase().includes(qn)
+      return okYear && okQ
+    })
+  }, [all, q, year])
+
   return (
     <Section
       title="Publications"
-      subtitle="Auto‑generated from BibTeX → JSON. Include DOI and full‑text links where possible."
+      subtitle="Auto-generated from BibTeX."
       actions={
         <a
           href="/en/open"
@@ -15,29 +35,40 @@ export default function PublicationsEN() {
         </a>
       }
     >
-      <Card eyebrow="How this page will work" title="Pipeline">
-        <ol className="list-decimal space-y-2 pl-5 text-sm">
-          <li>
-            Place a <code>publications.bib</code> file in <code>/data</code>.
-          </li>
-          <li>Convert to JSON (small script) and render here.</li>
-          <li>Each entry shows authors, title, venue, year, and links.</li>
-        </ol>
-      </Card>
-      <div className="grid gap-4">
-        {/* Render publication items here */}
-        <Card
-          title="Example Paper Title"
-          footer={
-            <a className="underline" href="https://doi.org/">
-              DOI
-            </a>
-          }
+      <div className="flex flex-wrap items-center gap-3">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Search title, author, venue…"
+          className="h-9 rounded-lg border px-3 text-sm"
+        />
+        <select
+          className="h-9 rounded-lg border px-2 text-sm"
+          value={year}
+          onChange={(e) => setYear(e.target.value === 'all' ? 'all' : Number(e.target.value))}
         >
-          <p>
-            <strong>Authors</strong> — Venue (Year).
-          </p>
-        </Card>
+          <option value="all">All years</option>
+          {years.map((y) => (
+            <option key={y} value={y}>
+              {y}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mt-4 grid gap-4">
+        {items.map((p) => (
+          <Card
+            key={p.id}
+            eyebrow={String(p.year ?? '')}
+            title={p.title}
+            footer={<span>{p.venue}</span>}
+            href={p.url}
+          >
+            <p className="text-sm">{p.authors.join(', ')}</p>
+          </Card>
+        ))}
+        {items.length === 0 && <p className="text-muted-foreground text-sm">No results.</p>}
       </div>
     </Section>
   )

@@ -50,4 +50,27 @@ export default [
       'simple-import-sort/exports': 'error',
     },
   },
+
+  {
+    files: ['scripts/**/*.{js,mjs,cjs,ts}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        // node-ish globals you use in scripts
+        process: 'readonly',
+        console: 'readonly',
+        __dirname: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+      },
+    },
+    rules: {
+      // keep scripts light
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+    },
+  },
 ]
