@@ -1,0 +1,39 @@
+[
+  {
+    "id": "fluoro-microscope",
+    "locale": "en",
+    "name": "Fluorescence Microscope",
+    "summary": "Objectives, camera, filter cubes; on-chip imaging ready.",
+    "specs": ["10×/20×/40× objectives", "sCMOS camera", "FITC/TRITC filter sets"],
+    "booking": "Trained users may reserve via email; training required for new users.",
+    "imageUrl": ""
+  },
+  {
+    "id": "fluoro-microscope-es",
+    "locale": "es",
+    "name": "Microscopio de fluorescencia",
+    "summary": "Objetivos, cámara y cubos de filtros; listo para experimentos en chip.",
+    "specs": ["Objetivos 10×/20×/40×", "Cámara sCMOS", "Filtros FITC/TRITC"],
+    "booking": "Usuarios capacitados reservan por correo; se requiere capacitación.",
+    "imageUrl": ""
+  },
+
+  {
+    "id": "pyrolysis-furnace",
+    "locale": "en",
+    "name": "Pyrolysis Furnace",
+    "summary": "C-MEMS conversion; programmable temperature profiles.",
+    "specs": ["Up to 1100 °C", "Inert gas line", "Ramp/soak profiles"],
+    "booking": "Operated by staff; submit samples and profile in advance.",
+    "imageUrl": ""
+  },
+  {
+    "id": "pyrolysis-furnace-es",
+    "locale": "es",
+    "name": "Horno de pirolisis",
+    "summary": "Conversión C-MEMS; perfiles de temperatura programables.",
+    "specs": ["Hasta 1100 °C", "Línea de gas inerte", "Rampas/soaks"],
+    "booking": "Operado por personal; entregar muestras y perfil con anticipación.",
+    "imageUrl": ""
+  }
+]

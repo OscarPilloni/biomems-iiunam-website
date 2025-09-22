@@ -1,0 +1,10 @@
+{
+  "en": {
+    "bookingPolicy": "For training or reservations, email lab@ii.unam.mx with instrument, date options, and brief purpose. Internal users may request extended blocks with a PI approval.",
+    "collaboration": "We welcome collaborations. For external users, we can discuss service agreements and co-authorship when appropriate."
+  },
+  "es": {
+    "bookingPolicy": "Para capacitación o reservaciones, escribe a lab@ii.unam.mx indicando instrumento, fechas y propósito. Usuarios internos pueden solicitar bloques extendidos con aval de PI.",
+    "collaboration": "Abiertas las colaboraciones. Para usuarios externos, podemos acordar servicios y coautoría cuando corresponda."
+  }
+}

@@ -64,3 +64,13 @@ export interface Person {
   avatarUrl?: string // external URL or /assets/...
   period?: string // e.g., "2024–2026" or graduation year
 }
+
+export type Instrument = {
+  id: string
+  locale: Locale // 'en' | 'es'
+  name: string
+  summary?: string
+  specs?: string[] // bullet list
+  booking?: string // how to request time / costs (short)
+  imageUrl?: string
+}
