@@ -1,25 +1,10 @@
 import { Badge } from '@components/Badge'
 import { Card } from '@components/Card'
 import Section from '@components/Section'
-
-const projects = [
-  {
-    title: 'Clasificación de microplásticos con DEP',
-    status: 'Activo',
-    funder: 'UNAM / CONAHCyT',
-    partners: ['Socio A'],
-    timeline: '2025–2026',
-  },
-  {
-    title: 'Electrodos C‑MEMS para biosensado',
-    status: 'Pasado',
-    funder: 'PAPIIT',
-    partners: ['Socio B'],
-    timeline: '2023–2024',
-  },
-]
+import { getProjects } from '@lib/data'
 
 export default function ProyectosES() {
+  const projects = getProjects('es')
   return (
     <Section
       title="Proyectos"
@@ -28,20 +13,20 @@ export default function ProyectosES() {
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p) => (
           <Card
-            key={p.title}
+            key={p.id}
             title={p.title}
             eyebrow={p.timeline}
             footer={
               <div className="flex flex-wrap items-center gap-2">
-                <Badge>{p.status}</Badge>
-                <Badge>{p.funder}</Badge>
-                {p.partners.map((x) => (
+                {p.status && <Badge>{p.status}</Badge>}
+                {p.funder && <Badge>{p.funder}</Badge>}
+                {(p.partners || []).map((x) => (
                   <Badge key={x}>{x}</Badge>
                 ))}
               </div>
             }
           >
-            <p>Resumen corto (2–3 líneas). Enlace a repo/datos si es público.</p>
+            {p.blurb ? <p>{p.blurb}</p> : null}
           </Card>
         ))}
       </div>

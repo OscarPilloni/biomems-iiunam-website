@@ -1,0 +1,22 @@
+[
+  {
+    "id": "dep-microplastics",
+    "locale": "en",
+    "title": "DEP-based microplastics sorting",
+    "status": "Active",
+    "funder": "UNAM / CONAHCyT",
+    "partners": ["Partner A"],
+    "timeline": "2025–2026",
+    "blurb": "Label-free sorting of microplastics in microchannels using traveling-wave DEP."
+  },
+  {
+    "id": "dep-microplastics-es",
+    "locale": "es",
+    "title": "Clasificación de microplásticos con DEP",
+    "status": "Activo",
+    "funder": "UNAM / CONAHCyT",
+    "partners": ["Socio A"],
+    "timeline": "2025–2026",
+    "blurb": "Clasificación sin etiquetas en microcanales usando DEP de onda viajera."
+  }
+]

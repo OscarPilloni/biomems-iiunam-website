@@ -1,0 +1,30 @@
+[
+  {
+    "id": "talk-2025-09",
+    "locale": "en",
+    "date": "2025-09-01",
+    "title": "Example talk at Conference X",
+    "href": "#"
+  },
+  {
+    "id": "msc-call-2025-08",
+    "locale": "en",
+    "date": "2025-08-15",
+    "title": "Seeking MSc student for DEP project",
+    "href": "#"
+  },
+  {
+    "id": "charla-2025-09",
+    "locale": "es",
+    "date": "2025-09-01",
+    "title": "Charla de ejemplo en Congreso X",
+    "href": "#"
+  },
+  {
+    "id": "conv-msc-2025-08",
+    "locale": "es",
+    "date": "2025-08-15",
+    "title": "Buscamos estudiante de Maestría para DEP",
+    "href": "#"
+  }
+]
