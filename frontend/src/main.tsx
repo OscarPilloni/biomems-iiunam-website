@@ -24,42 +24,45 @@ import ResearchES from '@pages/es/Research'
 import NotFound from '@pages/NotFound'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, redirect,RouterProvider } from 'react-router-dom'
 
-const router = createBrowserRouter([
-  { path: '/', loader: () => redirect('/en') },
-  {
-    element: <SiteLayout />,
-    children: [
-      // EN
-      { path: '/en', element: <HomeEN /> },
-      { path: '/en/people', element: <PeopleEN /> },
-      { path: '/en/research', element: <ResearchEN /> },
-      { path: '/en/publications', element: <PublicationsEN /> },
-      { path: '/en/projects', element: <ProjectsEN /> },
-      { path: '/en/facilities', element: <FacilitiesEN /> },
-      { path: '/en/news', element: <NewsEN /> },
-      { path: '/en/open', element: <OpenEN /> },
-      { path: '/en/contact', element: <ContactEN /> },
-      { path: '/en/projects/:id', element: <ProjectDetailEN /> },
+const router = createBrowserRouter(
+  [
+    { path: '/', loader: () => redirect('/en') },
+    {
+      element: <SiteLayout />,
+      children: [
+        // EN
+        { path: '/en', element: <HomeEN /> },
+        { path: '/en/people', element: <PeopleEN /> },
+        { path: '/en/research', element: <ResearchEN /> },
+        { path: '/en/publications', element: <PublicationsEN /> },
+        { path: '/en/projects', element: <ProjectsEN /> },
+        { path: '/en/projects/:id', element: <ProjectDetailEN /> },
+        { path: '/en/facilities', element: <FacilitiesEN /> },
+        { path: '/en/news', element: <NewsEN /> },
+        { path: '/en/open', element: <OpenEN /> },
+        { path: '/en/contact', element: <ContactEN /> },
 
-      // ES
-      { path: '/es', element: <HomeES /> },
-      { path: '/es/people', element: <PeopleES /> },
-      { path: '/es/research', element: <ResearchES /> },
-      { path: '/es/publications', element: <PublicationsES /> },
-      { path: '/es/projects', element: <ProjectsES /> },
-      { path: '/es/facilities', element: <FacilitiesES /> },
-      { path: '/es/news', element: <NewsES /> },
-      { path: '/es/open', element: <OpenES /> },
-      { path: '/es/contact', element: <ContactES /> },
-      { path: '/es/proyectos/:id', element: <ProjectDetailES /> },
+        // ES (same filenames as EN; English slugs)
+        { path: '/es', element: <HomeES /> },
+        { path: '/es/people', element: <PeopleES /> },
+        { path: '/es/research', element: <ResearchES /> },
+        { path: '/es/publications', element: <PublicationsES /> },
+        { path: '/es/projects', element: <ProjectsES /> },
+        { path: '/es/proyectos/:id', element: <ProjectDetailES /> }, // URL uses /proyectos for readability
+        { path: '/es/facilities', element: <FacilitiesES /> },
+        { path: '/es/news', element: <NewsES /> },
+        { path: '/es/open', element: <OpenES /> },
+        { path: '/es/contact', element: <ContactES /> },
 
-      // 404
-      { path: '*', element: <NotFound /> },
-    ],
-  },
-])
+        // 404
+        { path: '*', element: <NotFound /> },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL },
+)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
