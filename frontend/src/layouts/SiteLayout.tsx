@@ -1,62 +1,54 @@
+// src/layouts/SiteLayout.tsx
 import LangSwitch from '@components/LangSwitch'
-import { getLocaleFromPath } from '@lib/i18n'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import NavBar from '@components/NavBar'
+import type { Lang } from '@lib/routes'
+import { Outlet } from 'react-router-dom'
 
-export default function SiteLayout() {
-  const { pathname } = useLocation()
-  const locale = getLocaleFromPath(pathname)
-  const L = (en: string, es: string) => (locale === 'en' ? en : es)
-  const base = `/${locale}`
+type Props = { lang: Lang }
 
-  const nav = [
-    { href: `${base}`, label: L('Home', 'Inicio') },
-    { href: `${base}/${L('people', 'personas')}`, label: L('People', 'Personas') },
-    { href: `${base}/${L('research', 'investigacion')}`, label: L('Research', 'Investigación') },
-    {
-      href: `${base}/${L('publications', 'publicaciones')}`,
-      label: L('Publications', 'Publicaciones'),
-    },
-    { href: `${base}/${L('projects', 'proyectos')}`, label: L('Projects', 'Proyectos') },
-    {
-      href: `${base}/${L('facilities', 'infraestructura')}`,
-      label: L('Facilities', 'Infraestructura'),
-    },
-    { href: `${base}/${L('news', 'noticias')}`, label: L('News/Events', 'Noticias/Eventos') },
-    { href: `${base}/${L('open', 'datos')}`, label: L('Open data/code', 'Datos/Código') },
-    { href: `${base}/${L('contact', 'contacto')}`, label: L('Contact/Visit', 'Contacto/Visita') },
-  ]
-
+export default function SiteLayout({ lang }: Props) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="border-b">
-        <div className="container mx-auto flex h-14 items-center justify-between px-4">
-          <Link to="/en" className="font-semibold">
+    <div className="flex min-h-screen flex-col bg-white text-slate-900">
+      {/* Skip link for a11y */}
+      <a
+        href="#main"
+        className="sr-only z-50 rounded border bg-white px-3 py-2 focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
+      >
+        Skip to content
+      </a>
+
+      {/* Header / Nav */}
+      <header className="border-b bg-white/80 backdrop-blur">
+        <div className="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+          {/* Brand */}
+          <a href={lang === 'en' ? '/en/' : '/es/'} className="font-semibold tracking-tight">
             BioMEMS @ IIUNAM
-          </Link>
-          <nav className="flex items-center gap-6 text-sm">
-            {nav.map((i) => (
-              <NavLink
-                key={i.href}
-                to={i.href}
-                className={({ isActive }) =>
-                  isActive ? 'font-semibold underline' : 'hover:underline'
-                }
-              >
-                {i.label}
-              </NavLink>
-            ))}
-            <LangSwitch />
+          </a>
+
+          {/* Main nav */}
+          <nav aria-label="Primary">
+            <NavBar lang={lang} />
           </nav>
+
+          {/* Lang toggle */}
+          <div className="shrink-0">
+            <LangSwitch />
+          </div>
         </div>
       </header>
-      <main className="flex-1">
-        <div className="container mx-auto px-4 py-8">
-          <Outlet />
-        </div>
+
+      {/* Main content */}
+      <main id="main" className="container mx-auto max-w-6xl flex-1 px-4 py-8">
+        <Outlet />
       </main>
+
+      {/* Footer (simple placeholder) */}
       <footer className="border-t">
-        <div className="container mx-auto px-4 py-6 text-sm text-gray-500">
-          © {new Date().getFullYear()} IIUNAM — BioMEMS Lab
+        <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-6 text-sm text-slate-600">
+          <p>© {new Date().getFullYear()} BioMEMS Lab · IIUNAM</p>
+          <p className="opacity-75">
+            {lang === 'en' ? 'Mexico City, Mexico' : 'Ciudad de México, México'}
+          </p>
         </div>
       </footer>
     </div>

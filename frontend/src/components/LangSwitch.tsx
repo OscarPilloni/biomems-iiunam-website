@@ -1,20 +1,41 @@
-import { getLocaleFromPath, switchLocalePath } from '@lib/i18n'
-import { Link,useLocation } from 'react-router-dom'
+// src/components/LangSwitch.tsx
+import { getLangFromPath, getPageKeyFromPath,type Lang, pathFor } from '@lib/routes'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function LangSwitch() {
   const { pathname } = useLocation()
-  const locale = getLocaleFromPath(pathname)
-  const toEN = switchLocalePath(pathname, 'en')
-  const toES = switchLocalePath(pathname, 'es')
+  const navigate = useNavigate()
+
+  const current: Lang = getLangFromPath(pathname) ?? 'en'
+  const pageKey = getPageKeyFromPath(pathname) ?? 'home'
+
+  const go = (lang: Lang) => navigate(pathFor(pageKey, lang))
+
+  const base =
+    'inline-flex items-center px-3 py-1.5 text-sm font-medium border rounded-md transition'
+  const active = 'bg-slate-900 text-white border-slate-900'
+  const inactive = 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+
   return (
-    <div className="flex items-center gap-2 text-sm">
-      <Link to={toEN} className={locale === 'en' ? 'font-semibold underline' : 'hover:underline'}>
+    <div className="inline-flex gap-1" role="group" aria-label="Language">
+      <button
+        type="button"
+        onClick={() => go('en')}
+        className={`${base} ${current === 'en' ? active : inactive}`}
+        aria-current={current === 'en' ? 'page' : undefined}
+        aria-pressed={current === 'en'}
+      >
         EN
-      </Link>
-      <span aria-hidden>/</span>
-      <Link to={toES} className={locale === 'es' ? 'font-semibold underline' : 'hover:underline'}>
+      </button>
+      <button
+        type="button"
+        onClick={() => go('es')}
+        className={`${base} ${current === 'es' ? active : inactive}`}
+        aria-current={current === 'es' ? 'page' : undefined}
+        aria-pressed={current === 'es'}
+      >
         ES
-      </Link>
+      </button>
     </div>
   )
 }
