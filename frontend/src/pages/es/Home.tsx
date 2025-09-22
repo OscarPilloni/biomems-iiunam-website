@@ -1,12 +1,18 @@
 import { Card } from '@components/Card'
 import Section from '@components/Section'
 import { Stat } from '@components/Stat'
+import { getContactEmail, getFeatured, getRecentNews, getSocial, getTagline } from '@lib/site'
 
 export default function HomeES() {
+  const tagline = getTagline('es')
+  const news = getRecentNews('es', 3)
+  const featured = getFeatured('es')
+  const social = getSocial()
+
   return (
     <Section
       title="BioMEMS @ IIUNAM"
-      subtitle="Diseñamos sistemas microfluídicos y C‑MEMS para detectar, separar y entender fenómenos biológicos y ambientales complejos."
+      subtitle={tagline}
       actions={
         <a
           href="/es/contacto"
@@ -17,29 +23,58 @@ export default function HomeES() {
       }
     >
       <div className="grid gap-6 md:grid-cols-3">
-        <Stat label="Artículos" value={'—'} />
-        <Stat label="Proyectos activos" value={'—'} />
-        <Stat label="Estudiantes" value={'—'} />
+        <Stat label="Artículos" value="—" />
+        <Stat label="Proyectos activos" value="—" />
+        <Stat label="Estudiantes" value="—" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <Card title="Noticias recientes" eyebrow="Actualizaciones">
-          <ul className="list-disc space-y-2 pl-5">
-            <li>Publica aquí tu charla más reciente, premio o convocatoria.</li>
-            <li>Mantén 2–4 entradas; enlaza al archivo en /es/noticias.</li>
-          </ul>
-        </Card>
         <Card
-          title="Artículo/Proyecto destacado"
-          eyebrow="Destacado"
+          title="Noticias recientes"
+          eyebrow="Actualizaciones"
           footer={
-            <a className="underline" href="/es/proyectos">
-              Ver todos los proyectos
+            <a className="underline" href="/es/noticias">
+              Ver todas
             </a>
           }
         >
-          <p>Breve resumen (2–3 líneas) del resultado clave o prototipo en curso.</p>
+          <ul className="list-disc space-y-2 pl-5">
+            {news.map((n) => (
+              <li key={n.id}>
+                <a className="underline" href={n.href || '/es/noticias'}>
+                  {n.title}
+                </a>{' '}
+                <span className="text-muted-foreground text-xs">({n.date})</span>
+              </li>
+            ))}
+            {news.length === 0 && <li>No hay noticias aún.</li>}
+          </ul>
         </Card>
+
+        <Card
+          title="Proyecto destacado"
+          eyebrow={featured?.timeline || 'Destacado'}
+          footer={
+            <div className="flex gap-3 text-sm">
+              {featured?.funder && <span>{featured.funder}</span>}
+              {social.github && (
+                <a className="underline" href={social.github} target="_blank" rel="noreferrer">
+                  GitHub
+                </a>
+              )}
+            </div>
+          }
+          href="/es/proyectos"
+        >
+          <p>{featured?.blurb || 'Próximamente…'}</p>
+        </Card>
+      </div>
+
+      <div className="text-muted-foreground text-sm">
+        Correo:{' '}
+        <a className="underline" href={`mailto:${getContactEmail()}`}>
+          {getContactEmail()}
+        </a>
       </div>
     </Section>
   )

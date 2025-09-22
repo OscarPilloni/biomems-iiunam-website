@@ -31,3 +31,16 @@ export type Publication = {
   url?: string
   language: 'en' | 'es'
 }
+
+export type FeaturedRef = { kind: 'project' | 'pub'; id: string }
+
+export type Social = { github?: string; x?: string }
+
+export interface SiteMeta {
+  labName: string
+  tagline_en: string
+  tagline_es: string
+  contact_email: string
+  social: Social
+  featured?: FeaturedRef
+}

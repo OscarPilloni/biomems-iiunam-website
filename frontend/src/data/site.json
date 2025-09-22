@@ -1,0 +1,11 @@
+{
+  "labName": "BioMEMS @ IIUNAM",
+  "tagline_en": "We design microfluidic and C-MEMS systems to sense, separate, and understand complex biological and environmental phenomena.",
+  "tagline_es": "Diseñamos sistemas microfluídicos y C-MEMS para detectar, separar y entender fenómenos biológicos y ambientales complejos.",
+  "contact_email": "lab@ii.unam.mx",
+  "social": {
+    "github": "https://github.com/OscarPilloni",
+    "x": "https://x.com/"
+  },
+  "featured": { "kind": "project", "id": "dep-microplastics" }
+}
