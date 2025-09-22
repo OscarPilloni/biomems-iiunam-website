@@ -7,6 +7,7 @@ import HomeEN from '@pages/en/Home'
 import NewsEN from '@pages/en/News'
 import OpenEN from '@pages/en/Open'
 import PeopleEN from '@pages/en/People'
+import ProjectDetailEN from '@pages/en/ProjectDetail'
 import ProjectsEN from '@pages/en/Projects'
 import PublicationsEN from '@pages/en/Publications'
 import ResearchEN from '@pages/en/Research'
@@ -16,6 +17,7 @@ import HomeES from '@pages/es/Home'
 import NewsES from '@pages/es/News'
 import OpenES from '@pages/es/Open'
 import PeopleES from '@pages/es/People'
+import ProjectDetailES from '@pages/es/ProjectDetail'
 import ProjectsES from '@pages/es/Projects'
 import PublicationsES from '@pages/es/Publications'
 import ResearchES from '@pages/es/Research'
@@ -39,6 +41,7 @@ const router = createBrowserRouter([
       { path: '/en/news', element: <NewsEN /> },
       { path: '/en/open', element: <OpenEN /> },
       { path: '/en/contact', element: <ContactEN /> },
+      { path: '/en/projects/:id', element: <ProjectDetailEN /> },
 
       // ES
       { path: '/es', element: <HomeES /> },
@@ -50,6 +53,7 @@ const router = createBrowserRouter([
       { path: '/es/news', element: <NewsES /> },
       { path: '/es/open', element: <OpenES /> },
       { path: '/es/contact', element: <ContactES /> },
+      { path: '/es/proyectos/:id', element: <ProjectDetailES /> },
 
       // 404
       { path: '*', element: <NotFound /> },

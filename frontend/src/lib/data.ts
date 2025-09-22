@@ -3,6 +3,8 @@ import projectsRaw from '@data/projects.json'
 
 import type { Locale, NewsItem, Project } from './types'
 
+const projects = projectsRaw as Project[]
+
 export function getNews(locale: Locale): NewsItem[] {
   return (newsRaw as NewsItem[])
     .filter((n) => n.locale === locale)
@@ -10,5 +12,13 @@ export function getNews(locale: Locale): NewsItem[] {
 }
 
 export function getProjects(locale: Locale): Project[] {
-  return (projectsRaw as Project[]).filter((p) => p.locale === locale)
+  return projects.filter((p) => p.locale === locale)
+}
+
+// Find by slug (preferred), fallback to id
+export function getProjectBySlug(locale: Locale, slugOrId: string): Project | null {
+  const bySlug = projects.find((p) => p.locale === locale && p.slug === slugOrId)
+  if (bySlug) return bySlug
+  const byId = projects.find((p) => p.locale === locale && p.id === slugOrId)
+  return byId ?? null
 }

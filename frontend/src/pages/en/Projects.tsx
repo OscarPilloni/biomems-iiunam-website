@@ -16,6 +16,7 @@ export default function ProjectsEN() {
             key={p.id}
             title={p.title}
             eyebrow={p.timeline}
+            href={`/en/projects/${p.slug || p.id}`}
             footer={
               <div className="flex flex-wrap items-center gap-2">
                 {p.status && <Badge>{p.status}</Badge>}

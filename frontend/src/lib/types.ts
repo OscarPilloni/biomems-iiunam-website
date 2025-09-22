@@ -9,15 +9,20 @@ export type NewsItem = {
   href?: string
 }
 
+export type ProjectLink = { label: string; href: string }
+
 export type Project = {
   id: string
+  slug?: string
   locale: Locale
   title: string
   status: 'Active' | 'Past' | 'Proposed' | 'Activo' | 'Pasado' | 'Propuesto'
   funder?: string
   partners?: string[]
-  timeline?: string // "2025–2026"
-  blurb?: string // 2–3 lines
+  timeline?: string
+  blurb?: string
+  heroUrl?: string
+  links?: ProjectLink[]
 }
 
 export type Publication = {
